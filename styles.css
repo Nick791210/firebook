@@ -353,7 +353,7 @@ h3 {
     top: 0;
     left: 0;
     transform-style: preserve-3d;
-    animation: spin-tilt 12s linear infinite;
+    animation: global-orbit 25s linear infinite;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -365,9 +365,23 @@ h3 {
     height: 130px;
     background: radial-gradient(circle at 30% 30%, #ff8c42, var(--accent-orange), #802b00);
     border-radius: 50%;
-    box-shadow: 0 0 80px var(--accent-orange), inset 0 0 30px #ffe6cc;
-    animation: pulse-sphere 1s ease-in-out infinite alternate;
+    box-shadow: 0 0 80px var(--accent-orange), inset -20px -20px 40px rgba(0, 0, 0, 0.6), inset 10px 10px 30px rgba(255, 230, 204, 0.4);
     z-index: 10;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.glowing-sphere::after {
+    content: '';
+    position: absolute;
+    width: 250%;
+    height: 250%;
+    background: repeating-conic-gradient(from 0deg, transparent 0deg, rgba(255, 255, 255, 0.15) 15deg, transparent 30deg, rgba(255, 85, 0, 0.2) 45deg);
+    animation: spin-surface 6s linear infinite;
+    border-radius: 50%;
+    mix-blend-mode: color-dodge;
 }
 
 .ring {
@@ -380,66 +394,127 @@ h3 {
 .ring-1 {
     width: 160px;
     height: 160px;
-    border-color: rgba(255, 85, 0, 0.3);
-    animation: spin 10s linear infinite;
+    border-color: rgba(255, 85, 0, 0.4);
+    animation: orbit-1 3s linear infinite;
 }
 
 .ring-2 {
-    width: 220px;
-    height: 220px;
-    border-color: rgba(255, 255, 255, 0.05);
-    animation: spin-rev 15s linear infinite;
+    width: 200px;
+    height: 200px;
+    border-color: rgba(255, 255, 255, 0.1);
+    animation: orbit-2 5s linear infinite;
 }
 
 .ring-3 {
-    width: 280px;
-    height: 280px;
-    border-color: rgba(255, 85, 0, 0.1);
+    width: 240px;
+    height: 240px;
+    border-color: rgba(255, 85, 0, 0.2);
     border-left-color: var(--accent-orange);
-    animation: spin-tilt 20s linear infinite;
+    animation: orbit-3 2.5s linear infinite;
 }
 
-@keyframes spin {
+.ring-4 {
+    width: 300px;
+    height: 300px;
+    border-color: rgba(255, 85, 0, 0.1);
+    border-right-color: var(--accent-orange-bright);
+    border-top-color: rgba(255, 255, 255, 0.2);
+    animation: orbit-4 4s linear infinite;
+}
+
+.ring-5 {
+    width: 360px;
+    height: 360px;
+    border-color: rgba(255, 85, 0, 0.05);
+    border-bottom-color: var(--accent-orange);
+    animation: orbit-5 6s linear infinite;
+}
+
+.ring-6 {
+    width: 440px;
+    height: 440px;
+    border-color: rgba(255, 255, 255, 0.03);
+    border-right-color: var(--accent-orange-dim);
+    animation: orbit-6 8s linear infinite;
+}
+
+@keyframes global-orbit {
     0% {
-        transform: rotateX(60deg) rotateY(0deg) rotateZ(0deg);
+        transform: rotateX(20deg) rotateY(0deg);
     }
 
     100% {
-        transform: rotateX(60deg) rotateY(0deg) rotateZ(360deg);
+        transform: rotateX(20deg) rotateY(360deg);
     }
 }
 
-@keyframes spin-rev {
+@keyframes spin-surface {
     0% {
-        transform: rotateX(45deg) rotateY(45deg) rotateZ(0deg);
+        transform: rotate(0deg);
     }
 
     100% {
-        transform: rotateX(45deg) rotateY(45deg) rotateZ(-360deg);
+        transform: rotate(360deg);
     }
 }
 
-@keyframes spin-tilt {
+@keyframes orbit-1 {
     0% {
-        transform: rotateX(65deg) rotateY(-20deg) rotateZ(0deg);
+        transform: rotateX(70deg) rotateY(20deg) rotateZ(0deg);
     }
 
     100% {
-        transform: rotateX(65deg) rotateY(-20deg) rotateZ(360deg);
+        transform: rotateX(70deg) rotateY(20deg) rotateZ(360deg);
     }
 }
 
-@keyframes pulse-sphere {
+@keyframes orbit-2 {
     0% {
-        transform: scale(0.7);
-        box-shadow: 0 0 40px var(--accent-orange), inset 0 0 10px #ffe6cc;
-        filter: brightness(0.8);
+        transform: rotateX(40deg) rotateY(-30deg) rotateZ(0deg);
     }
 
     100% {
-        transform: scale(1.5);
-        box-shadow: 0 0 180px var(--accent-orange-bright), 0 0 80px var(--accent-orange), inset 0 0 50px #fff;
-        filter: brightness(1.5);
+        transform: rotateX(40deg) rotateY(-30deg) rotateZ(-360deg);
+    }
+}
+
+@keyframes orbit-3 {
+    0% {
+        transform: rotateX(80deg) rotateY(50deg) rotateZ(0deg);
+    }
+
+    100% {
+        transform: rotateX(80deg) rotateY(50deg) rotateZ(360deg);
+    }
+}
+
+@keyframes orbit-4 {
+    0% {
+        transform: rotateX(30deg) rotateY(70deg) rotateZ(0deg);
+    }
+
+    100% {
+        transform: rotateX(30deg) rotateY(70deg) rotateZ(-360deg);
+    }
+}
+
+@keyframes orbit-5 {
+    0% {
+        transform: rotateX(60deg) rotateY(-60deg) rotateZ(0deg);
+    }
+
+    100% {
+        transform: rotateX(60deg) rotateY(-60deg) rotateZ(360deg);
+    }
+}
+
+@keyframes orbit-6 {
+    0% {
+        transform: rotateX(75deg) rotateY(10deg) rotateZ(0deg);
+    }
+
+    100% {
+        transform: rotateX(75deg) rotateY(10deg) rotateZ(-360deg);
     }
 }
 
