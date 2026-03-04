@@ -363,25 +363,28 @@ h3 {
     position: absolute;
     width: 130px;
     height: 130px;
-    background: radial-gradient(circle at 30% 30%, #ff8c42, var(--accent-orange), #802b00);
+    background: radial-gradient(circle at 30% 30%, #ff8c42, var(--accent-orange) 55%, #662200);
     border-radius: 50%;
-    box-shadow: 0 0 80px var(--accent-orange), inset -20px -20px 40px rgba(0, 0, 0, 0.6), inset 10px 10px 30px rgba(255, 230, 204, 0.4);
+    box-shadow: 0 0 60px var(--accent-orange), inset -20px -20px 40px rgba(0, 0, 0, 0.8), inset 10px 10px 30px rgba(255, 230, 204, 0.5);
     z-index: 10;
     overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .glowing-sphere::after {
     content: '';
     position: absolute;
-    width: 250%;
-    height: 250%;
-    background: repeating-conic-gradient(from 0deg, transparent 0deg, rgba(255, 255, 255, 0.15) 15deg, transparent 30deg, rgba(255, 85, 0, 0.2) 45deg);
-    animation: spin-surface 6s linear infinite;
-    border-radius: 50%;
-    mix-blend-mode: color-dodge;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background-image:
+        radial-gradient(circle at 10% 40%, rgba(80, 20, 0, 0.6) 8%, transparent 20%),
+        radial-gradient(circle at 30% 70%, rgba(50, 10, 0, 0.7) 12%, transparent 25%),
+        radial-gradient(circle at 60% 30%, rgba(90, 25, 0, 0.5) 10%, transparent 20%),
+        radial-gradient(circle at 85% 65%, rgba(60, 15, 0, 0.8) 15%, transparent 30%);
+    background-size: 50% 100%;
+    animation: mars-spin 12s linear infinite;
+    mix-blend-mode: color-burn;
 }
 
 .ring {
@@ -448,13 +451,13 @@ h3 {
     }
 }
 
-@keyframes spin-surface {
+@keyframes mars-spin {
     0% {
-        transform: rotate(0deg);
+        transform: translateX(0);
     }
 
     100% {
-        transform: rotate(360deg);
+        transform: translateX(-50%);
     }
 }
 
