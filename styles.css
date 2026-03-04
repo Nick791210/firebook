@@ -14,7 +14,7 @@
     --border-color: #2e2a27;
 
     /* Fonts */
-    --font-main: 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+    --font-main: 'LXGW WenKai TC', 'Noto Serif TC', serif;
     --font-serif: 'Noto Serif TC', "Times New Roman", serif;
 
     --transition-fast: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -34,8 +34,9 @@ html {
 }
 
 body {
-    font-family: var(--font-main);
+    background-color: var(--bg-dark);
     color: var(--text-primary);
+    font-family: var(--font-main);
     line-height: 1.7;
     overflow-x: hidden;
     position: relative;
@@ -247,6 +248,10 @@ li,
 span,
 .detail-text {
     text-wrap: pretty;
+    text-align: justify;
+    line-height: 1.85;
+    letter-spacing: 0.05em;
+    word-break: keep-all;
 }
 
 h1 {
@@ -332,23 +337,26 @@ h3 {
 
 /* 3D abstract visualization for Hero */
 .cube-container {
-    position: relative;
     width: 300px;
     height: 300px;
-    perspective: 1000px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: spin-tilt 12s linear infinite;
 }
 
 .glowing-sphere {
-    width: 80px;
-    height: 80px;
-    background: radial-gradient(circle at 30% 30%, #ff8c42, var(--accent-orange), #802b00);
-    border-radius: 50%;
-    box-shadow: 0 0 60px var(--accent-orange);
     position: absolute;
-    animation: pulse-sphere 4s ease-in-out infinite alternate;
+    top: 50%;
+    left: 50%;
+    width: 140px;
+    height: 140px;
+    background: radial-gradient(circle at 30% 30%, var(--accent-orange-bright), var(--accent-orange) 50%, #802b00 90%, transparent);
+    border-radius: 50%;
+    margin-top: -70px;
+    margin-left: -70px;
+    box-shadow: 0 0 80px var(--accent-orange), inset 0 0 30px #ffe6cc;
+    animation: pulse-sphere 2.5s ease-in-out infinite alternate;
+    z-index: 10;
 }
 
 .ring {
@@ -402,23 +410,23 @@ h3 {
 
 @keyframes spin-tilt {
     100% {
-        transform: rotateX(70deg) rotateY(-20deg) rotateZ(360deg);
+        transform: rotateX(80deg) rotateY(-40deg) rotateZ(360deg) scale(1.1);
     }
 
     0% {
-        transform: rotateX(70deg) rotateY(-20deg) rotateZ(0deg);
+        transform: rotateX(50deg) rotateY(-10deg) rotateZ(0deg) scale(0.9);
     }
 }
 
 @keyframes pulse-sphere {
     0% {
-        transform: scale(1);
-        box-shadow: 0 0 40px var(--accent-orange);
+        transform: scale(0.85);
+        box-shadow: 0 0 30px var(--accent-orange), inset 0 0 10px #ffe6cc;
     }
 
     100% {
-        transform: scale(1.1);
-        box-shadow: 0 0 80px var(--accent-orange-bright);
+        transform: scale(1.3);
+        box-shadow: 0 0 120px var(--accent-orange-bright), inset 0 0 40px #fff;
     }
 }
 
@@ -926,26 +934,29 @@ input[type="number"]:disabled {
 /* Marquee */
 .marquee-wrapper {
     background: var(--accent-orange);
-    padding: 1rem 0;
+    padding: 1.2rem 0;
     overflow: hidden;
     position: relative;
-    transform: rotate(-1deg) scale(1.02);
+    transform: rotate(-1.5deg) scale(1.05);
     z-index: 10;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .marquee {
+    display: flex;
     white-space: nowrap;
-    animation: animate-marquee 30s linear infinite;
-    display: inline-block;
+    width: max-content;
+    animation: animate-marquee 25s linear infinite;
 }
 
 .marquee span {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 900;
-    color: #000;
+    color: #0d0c0b;
     text-transform: uppercase;
     padding: 0 1rem;
-    letter-spacing: 2px;
+    letter-spacing: 2.5px;
+    font-family: var(--font-serif);
 }
 
 @keyframes animate-marquee {
