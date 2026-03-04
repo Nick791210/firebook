@@ -46,9 +46,11 @@
         <div class="hero-image">
             <div class="cube-container">
                 <div class="glowing-sphere"></div>
-                <div class="ring ring-1"></div>
-                <div class="ring ring-2"></div>
-                <div class="ring ring-3"></div>
+                <div class="rings-wrapper">
+                    <div class="ring ring-1"></div>
+                    <div class="ring ring-2"></div>
+                    <div class="ring ring-3"></div>
+                </div>
             </div>
         </div>
     </header>
@@ -126,8 +128,9 @@
                         <label>情境 1：如果發生好結果</label>
                         <div class="row">
                             <div class="field">
-                                <span>爽度/效用 (0~100)</span>
-                                <input type="number" id="a-util-1" value="80" max="100" min="-100">
+                                <span>效用值 (-100~100)</span>
+                                <input type="number" id="a-util-1" value="80" max="100" min="-100"
+                                    oninput="updateCalcs(false)">
                             </div>
                             <div class="field">
                                 <span>發生機率 (%)</span>
@@ -140,8 +143,9 @@
                         <label>情境 2：如果發生壞結果</label>
                         <div class="row">
                             <div class="field">
-                                <span>痛苦/效用 (-100~0)</span>
-                                <input type="number" id="a-util-2" value="-50" max="100" min="-100">
+                                <span>效用值 (-100~100)</span>
+                                <input type="number" id="a-util-2" value="-50" max="100" min="-100"
+                                    oninput="updateCalcs(false)">
                             </div>
                             <div class="field">
                                 <span>發生機率 (%)</span>
@@ -161,8 +165,9 @@
                         <label>情境 1：如果發生好結果</label>
                         <div class="row">
                             <div class="field">
-                                <span>爽度/效用 (0~100)</span>
-                                <input type="number" id="b-util-1" value="30" max="100" min="-100">
+                                <span>效用值 (-100~100)</span>
+                                <input type="number" id="b-util-1" value="30" max="100" min="-100"
+                                    oninput="updateCalcs(false)">
                             </div>
                             <div class="field">
                                 <span>發生機率 (%)</span>
@@ -175,8 +180,9 @@
                         <label>情境 2：如果發生壞結果</label>
                         <div class="row">
                             <div class="field">
-                                <span>痛苦/效用 (-100~0)</span>
-                                <input type="number" id="b-util-2" value="-10" max="100" min="-100">
+                                <span>效用值 (-100~100)</span>
+                                <input type="number" id="b-util-2" value="-10" max="100" min="-100"
+                                    oninput="updateCalcs(false)">
                             </div>
                             <div class="field">
                                 <span>發生機率 (%)</span>

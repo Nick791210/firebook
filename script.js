@@ -103,7 +103,7 @@ function updateProb(choice, scene) {
     updateCalcs(false);
 }
 
-function updateCalcs(showWinner) {
+function updateCalcs(isFromWinnerCalc = false) {
     // Choice A values
     const aUtil1 = parseFloat(document.getElementById('a-util-1').value) || 0;
     const aProb1 = parseFloat(document.getElementById('a-prob-1').value) || 0;
@@ -124,10 +124,16 @@ function updateCalcs(showWinner) {
     document.getElementById('a-result').textContent = eA.toFixed(1);
     document.getElementById('b-result').textContent = eB.toFixed(1);
 
+    // If winner display is active, update it in realtime
+    const winnerDisplay = document.getElementById('winner-display');
+    if (!isFromWinnerCalc && winnerDisplay && winnerDisplay.classList.contains('show')) {
+        calculateWinner(false);
+    }
+
     return { eA, eB };
 }
 
-function calculateWinner() {
+function calculateWinner(shouldScroll = true) {
     const { eA, eB } = updateCalcs(true);
     const winnerDisplay = document.getElementById('winner-display');
     const winnerText = document.getElementById('winner-text');
@@ -138,9 +144,11 @@ function calculateWinner() {
     winnerDisplay.classList.add('show');
 
     // Scroll to result softly
-    setTimeout(() => {
-        winnerDisplay.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }, 100);
+    if (shouldScroll) {
+        setTimeout(() => {
+            winnerDisplay.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
+    }
 
     // Calculate meter percentage (normalize mapping A left to B right)
     // Range is rough, let's map it smoothly based on difference
