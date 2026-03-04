@@ -1,20 +1,24 @@
 :root {
-    --bg-dark: #070707;
-    --bg-card: #121212;
-    --bg-card-hover: #1b1b1b;
-    --text-primary: #ededed;
-    --text-secondary: #a0a0a0;
-    --text-muted: #666666;
-    --accent-orange: #ff5500;
-    --accent-orange-bright: #ff7733;
-    --accent-orange-dim: rgba(255, 85, 0, 0.15);
-    --accent-glow: rgba(255, 85, 0, 0.4);
+    /* Color Palette: Obsidian & Ember */
+    --bg-dark: #0f0e0d;
+    --bg-card: #181615;
+    --bg-card-hover: #221f1d;
+    --text-primary: #f0ebe1;
+    --text-secondary: #a39e93;
+    --text-muted: #7a766d;
+    --accent-orange: #E85D04;
+    --accent-orange-bright: #F48C06;
+    --accent-orange-dim: rgba(232, 93, 4, 0.15);
+    --accent-glow: rgba(232, 93, 4, 0.4);
     --accent-blue: #0088ff;
-    --border-color: #262626;
-    --font-main: 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+    --border-color: #2e2a27;
 
-    --transition-fast: all 0.2s ease;
-    --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Fonts */
+    --font-main: 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+    --font-serif: 'Noto Serif TC', "Times New Roman", serif;
+
+    --transition-fast: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
     --transition-slow: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -154,35 +158,56 @@ nav {
 .hamburger {
     display: none;
     flex-direction: column;
-    gap: 8px;
+    gap: 0;
     cursor: pointer;
     z-index: 1001;
     /* Above nav-links when open */
-    padding: 10px;
-    margin-right: -10px;
+    padding: 12px;
+    margin-right: -12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 46px;
+    height: 46px;
+    justify-content: center;
+    align-items: center;
+    transition: var(--transition-smooth);
+}
+
+.hamburger:hover {
+    background: var(--accent-orange-dim);
+    border-color: var(--accent-orange);
+    box-shadow: 0 0 15px var(--accent-glow);
 }
 
 .hamburger span {
     display: block;
-    width: 30px;
+    width: 20px;
     height: 2px;
     background: var(--text-primary);
     transition: var(--transition-smooth);
-    border-radius: 2px;
+    border-radius: 1px;
+    position: absolute;
+}
+
+.hamburger span:nth-child(1) {
+    transform: translateY(-4px);
 }
 
 .hamburger span:nth-child(2) {
-    width: 20px;
-    align-self: flex-end;
+    width: 14px;
+    transform: translateY(4px);
+    margin-left: 6px;
 }
 
 .hamburger.open span:nth-child(1) {
-    transform: translateY(5px) rotate(45deg);
+    transform: translateY(0) rotate(45deg);
 }
 
 .hamburger.open span:nth-child(2) {
-    width: 30px;
-    transform: translateY(-5px) rotate(-45deg);
+    width: 20px;
+    margin-left: 0;
+    transform: translateY(0) rotate(-45deg);
 }
 
 .nav-contact {
@@ -204,27 +229,49 @@ nav {
     box-shadow: 0 0 20px rgba(255, 85, 0, 0.2);
 }
 
-/* Typography styles */
+/* Typography styles & Widow prevention */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+blockquote,
+.subtitle,
+.intro {
+    text-wrap: balance;
+}
+
+p,
+li,
+span,
+.detail-text {
+    text-wrap: pretty;
+}
+
 h1 {
+    font-family: var(--font-serif);
     font-size: clamp(2.5rem, 5vw, 4.5rem);
-    line-height: 1.15;
+    line-height: 1.25;
     font-weight: 900;
     margin-bottom: 1.5rem;
-    letter-spacing: -1px;
+    letter-spacing: -0.5px;
 }
 
 h2 {
+    font-family: var(--font-serif);
     font-size: clamp(2rem, 3.5vw, 3rem);
     font-weight: 900;
     margin-bottom: 1rem;
-    letter-spacing: -0.5px;
+    letter-spacing: 0px;
 }
 
 h3 {
     font-size: 1.4rem;
     font-weight: 700;
     margin-bottom: 0.8rem;
-    color: #fff;
+    color: var(--text-primary);
+    letter-spacing: 0.5px;
 }
 
 .highlight {
@@ -250,8 +297,8 @@ h3 {
     font-size: 0.85rem;
     font-weight: 600;
     margin-bottom: 1.5rem;
-    background: rgba(255, 85, 0, 0.05);
-    box-shadow: 0 0 15px rgba(255, 85, 0, 0.1);
+    background: var(--accent-orange-dim);
+    box-shadow: 0 0 15px var(--accent-glow);
 }
 
 .hero-content {
@@ -673,7 +720,7 @@ input[type="number"] {
 input[type="number"]:focus {
     outline: none;
     border-color: var(--accent-orange);
-    box-shadow: 0 0 10px rgba(255, 85, 0, 0.2);
+    box-shadow: 0 0 15px var(--accent-glow);
 }
 
 input[type="number"]:disabled {
