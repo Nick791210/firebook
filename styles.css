@@ -363,11 +363,29 @@ h3 {
     position: absolute;
     width: 130px;
     height: 130px;
-    background: radial-gradient(circle at 30% 30%, #ffffff 0%, #ffcc00 15%, #ff4400 50%, #440000 90%);
+    background: radial-gradient(circle at 30% 30%, #ffffff 0%, #ffcc00 15%, #ff4400 45%, #880000 80%, #220000 100%);
     border-radius: 50%;
-    box-shadow: 0 0 80px rgba(255, 85, 0, 0.8), inset -20px -20px 40px rgba(0, 0, 0, 0.8), inset 10px 10px 30px rgba(255, 255, 255, 0.5);
     z-index: 10;
     overflow: hidden;
+    animation: fire-flicker 0.3s infinite alternate ease-in-out;
+}
+
+.glowing-sphere::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: 0;
+    width: 200%;
+    height: 140%;
+    background-image:
+        radial-gradient(ellipse at 20% 50%, rgba(255, 255, 255, 0.8) 10%, transparent 40%),
+        radial-gradient(ellipse at 70% 60%, rgba(255, 200, 0, 0.9) 15%, transparent 50%),
+        radial-gradient(ellipse at 40% 30%, rgba(255, 100, 0, 0.9) 20%, transparent 55%),
+        radial-gradient(ellipse at 90% 40%, rgba(255, 50, 0, 0.8) 15%, transparent 60%);
+    background-size: 50% 100%;
+    animation: burning-spin 2.5s linear infinite;
+    mix-blend-mode: overlay;
+    filter: blur(2px);
 }
 
 .glowing-sphere::after {
@@ -383,7 +401,7 @@ h3 {
         radial-gradient(ellipse at 60% 30%, rgba(255, 100, 0, 0.8) 20%, transparent 55%),
         radial-gradient(ellipse at 85% 70%, rgba(255, 50, 0, 0.7) 15%, transparent 60%);
     background-size: 50% 100%;
-    animation: burning-spin 4s linear infinite;
+    animation: burning-spin 3.5s linear infinite;
     mix-blend-mode: color-dodge;
     filter: blur(4px) contrast(1.5);
 }
@@ -449,6 +467,16 @@ h3 {
 
     100% {
         transform: rotateX(20deg) rotateY(360deg);
+    }
+}
+
+@keyframes fire-flicker {
+    0% {
+        box-shadow: 0 0 60px 10px rgba(255, 85, 0, 0.8), inset -20px -20px 40px rgba(0, 0, 0, 0.8), inset 10px 10px 30px rgba(255, 255, 255, 0.5);
+    }
+
+    100% {
+        box-shadow: 0 0 90px 20px rgba(255, 40, 0, 1), inset -20px -20px 40px rgba(0, 0, 0, 0.9), inset 10px 10px 30px rgba(255, 255, 255, 0.7);
     }
 }
 
