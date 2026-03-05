@@ -86,6 +86,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial dummy calculation for display
     updateCalcs(false);
+
+    // Single Video Seamless Loop Logic via Fade in/out
+    const video = document.querySelector('.video-fireball video');
+    if (video) {
+        video.loop = false; // Ensure native loop is off
+        video.classList.add('fade-hide');
+
+        // When video actually starts playing, fade it in
+        video.addEventListener('playing', () => {
+            // Fade in if it's near the beginning
+            if (video.currentTime < 1) {
+                video.classList.remove('fade-hide');
+            }
+        });
+
+        const checkTime = () => {
+            const fadeDuration = 1; // Start fading out 1 second before end
+            if (video.duration && video.currentTime >= video.duration - fadeDuration) {
+                video.classList.add('fade-hide');
+            }
+            requestAnimationFrame(checkTime);
+        };
+        requestAnimationFrame(checkTime);
+
+        // When video ends, reset to 0 and play to trigger the fade-in again
+        video.addEventListener('ended', () => {
+            video.currentTime = 0;
+            video.play();
+        });
+    }
 });
 
 // Calculator Logic

@@ -353,7 +353,7 @@ h3 {
     top: 0;
     left: 0;
     transform-style: preserve-3d;
-    animation: global-orbit 25s linear infinite;
+    transform: rotateX(20deg) rotateY(0deg);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -376,6 +376,7 @@ h3 {
 }
 
 .video-fireball video {
+    position: absolute;
     width: 140%;
     /* 放大影片以填滿遮罩範圍 */
     height: 140%;
@@ -383,6 +384,12 @@ h3 {
     /* 去除黑色背景的魔法，保留亮部火焰 */
     mix-blend-mode: screen;
     filter: contrast(1.2) brightness(1.1);
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+.video-fireball video.fade-hide {
+    opacity: 0;
 }
 
 .ring {
@@ -412,7 +419,7 @@ h3 {
     border: 3px solid transparent;
     border-left-color: rgba(255, 85, 0, 0.5);
     border-right-color: rgba(255, 85, 0, 0.2);
-    animation: orbit-1 3s linear infinite;
+    transform: rotateX(70deg) rotateY(20deg) rotateZ(0deg);
 }
 
 .ring-2 {
@@ -420,7 +427,7 @@ h3 {
     height: 200px;
     border: 2px solid transparent;
     border-top-color: rgba(255, 255, 255, 0.3);
-    animation: orbit-2 5s linear infinite;
+    transform: rotateX(40deg) rotateY(-30deg) rotateZ(0deg);
 }
 
 .ring-3 {
@@ -428,7 +435,7 @@ h3 {
     height: 240px;
     border: 4px solid transparent;
     border-bottom-color: var(--accent-orange);
-    animation: orbit-3 2.5s linear infinite;
+    transform: rotateX(80deg) rotateY(50deg) rotateZ(0deg);
 }
 
 .ring-3::before {
@@ -442,7 +449,7 @@ h3 {
     height: 300px;
     border: 3px solid transparent;
     border-right-color: rgba(255, 255, 255, 0.4);
-    animation: orbit-4 4s linear infinite;
+    transform: rotateX(30deg) rotateY(70deg) rotateZ(0deg);
 }
 
 .ring-5 {
@@ -450,7 +457,7 @@ h3 {
     height: 360px;
     border: 2px solid rgba(255, 85, 0, 0.05);
     border-left-color: var(--accent-orange);
-    animation: orbit-5 6s linear infinite;
+    transform: rotateX(60deg) rotateY(-60deg) rotateZ(0deg);
 }
 
 .ring-6 {
@@ -458,7 +465,7 @@ h3 {
     height: 440px;
     border: 3px solid rgba(255, 255, 255, 0.03);
     border-bottom-color: var(--accent-orange-dim);
-    animation: orbit-6 8s linear infinite;
+    transform: rotateX(75deg) rotateY(10deg) rotateZ(0deg);
 }
 
 @keyframes global-orbit {
