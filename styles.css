@@ -368,17 +368,13 @@ h3 {
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    overflow: hidden;
-    /* 讓火焰邊緣平滑融入背景 */
-    mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 70%);
-    -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 70%);
     animation: float-fireball 6s ease-in-out infinite alternate;
 }
 
 .video-fireball video {
     position: absolute;
-    width: 140%;
-    height: 140%;
+    width: 115%;
+    height: 115%;
     object-fit: cover;
     mix-blend-mode: screen;
     opacity: 1;
