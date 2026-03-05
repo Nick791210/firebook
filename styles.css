@@ -376,13 +376,18 @@ h3 {
 }
 
 .video-fireball video {
+    position: absolute;
     width: 140%;
-    /* 放大影片以填滿遮罩範圍 */
     height: 140%;
     object-fit: cover;
-    /* 去除黑色背景的魔法，保留亮部火焰 */
     mix-blend-mode: screen;
     filter: contrast(1.2) brightness(1.1);
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.video-fireball video.active {
+    opacity: 1;
 }
 
 .ring {
