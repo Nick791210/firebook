@@ -359,51 +359,29 @@ h3 {
     align-items: center;
 }
 
-.glowing-sphere {
+.video-fireball {
     position: absolute;
-    width: 130px;
-    height: 130px;
-    background: radial-gradient(circle at 30% 30%, #ffffff 0%, #ffcc00 15%, #ff4400 45%, #880000 80%, #220000 100%);
-    border-radius: 50%;
+    width: 280px;
+    height: 280px;
     z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
     overflow: hidden;
-    animation: fire-flicker 0.3s infinite alternate ease-in-out;
+    /* 讓火焰邊緣平滑融入背景 */
+    mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 70%);
+    -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 70%);
 }
 
-.glowing-sphere::before {
-    content: '';
-    position: absolute;
-    top: -20%;
-    left: 0;
-    width: 200%;
+.video-fireball video {
+    width: 140%;
+    /* 放大影片以填滿遮罩範圍 */
     height: 140%;
-    background-image:
-        radial-gradient(ellipse at 20% 50%, rgba(255, 255, 255, 0.8) 10%, transparent 40%),
-        radial-gradient(ellipse at 70% 60%, rgba(255, 200, 0, 0.9) 15%, transparent 50%),
-        radial-gradient(ellipse at 40% 30%, rgba(255, 100, 0, 0.9) 20%, transparent 55%),
-        radial-gradient(ellipse at 90% 40%, rgba(255, 50, 0, 0.8) 15%, transparent 60%);
-    background-size: 50% 100%;
-    animation: burning-spin 2.5s linear infinite;
-    mix-blend-mode: overlay;
-    filter: blur(2px);
-}
-
-.glowing-sphere::after {
-    content: '';
-    position: absolute;
-    top: -20%;
-    left: 0;
-    width: 200%;
-    height: 140%;
-    background-image:
-        radial-gradient(ellipse at 10% 40%, rgba(255, 255, 200, 0.9) 10%, transparent 40%),
-        radial-gradient(ellipse at 30% 60%, rgba(255, 200, 50, 0.8) 15%, transparent 50%),
-        radial-gradient(ellipse at 60% 30%, rgba(255, 100, 0, 0.8) 20%, transparent 55%),
-        radial-gradient(ellipse at 85% 70%, rgba(255, 50, 0, 0.7) 15%, transparent 60%);
-    background-size: 50% 100%;
-    animation: burning-spin 3.5s linear infinite;
-    mix-blend-mode: color-dodge;
-    filter: blur(4px) contrast(1.5);
+    object-fit: cover;
+    /* 去除黑色背景的魔法，保留亮部火焰 */
+    mix-blend-mode: screen;
+    filter: contrast(1.2) brightness(1.1);
 }
 
 .ring {
