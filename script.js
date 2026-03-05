@@ -86,45 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial dummy calculation for display
     updateCalcs(false);
-
-    // Video Cross-fade Logic
-    const vid1 = document.getElementById('fireball-vid-1');
-    const vid2 = document.getElementById('fireball-vid-2');
-
-    if (vid1 && vid2) {
-        let activeVid = vid1;
-        let inactiveVid = vid2;
-        const fadeDuration = 1; // seconds before end to start fading
-
-        const checkTime = () => {
-            if (activeVid.duration && activeVid.currentTime >= activeVid.duration - fadeDuration) {
-                // Start the second video
-                inactiveVid.currentTime = 0;
-                inactiveVid.play();
-
-                // Swap active classes
-                inactiveVid.classList.add('active');
-                activeVid.classList.remove('active');
-
-                // Swap references
-                const temp = activeVid;
-                activeVid = inactiveVid;
-                inactiveVid = temp;
-            }
-        };
-
-        // Pause native looping to trigger fade manually
-        vid1.loop = false;
-        vid2.loop = false;
-        vid1.play(); // Start initial video
-
-        // Use requestAnimationFrame for smoother time checking instead of timeupdate event
-        const loopTimer = () => {
-            checkTime();
-            requestAnimationFrame(loopTimer);
-        }
-        requestAnimationFrame(loopTimer);
-    }
 });
 
 // Calculator Logic
