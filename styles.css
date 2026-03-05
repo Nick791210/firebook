@@ -363,9 +363,9 @@ h3 {
     position: absolute;
     width: 130px;
     height: 130px;
-    background: radial-gradient(circle at 30% 30%, #ff8c42, var(--accent-orange) 55%, #662200);
+    background: radial-gradient(circle at 30% 30%, #ffffff 0%, #ffcc00 15%, #ff4400 50%, #440000 90%);
     border-radius: 50%;
-    box-shadow: 0 0 60px var(--accent-orange), inset -20px -20px 40px rgba(0, 0, 0, 0.8), inset 10px 10px 30px rgba(255, 230, 204, 0.5);
+    box-shadow: 0 0 80px rgba(255, 85, 0, 0.8), inset -20px -20px 40px rgba(0, 0, 0, 0.8), inset 10px 10px 30px rgba(255, 255, 255, 0.5);
     z-index: 10;
     overflow: hidden;
 }
@@ -373,18 +373,19 @@ h3 {
 .glowing-sphere::after {
     content: '';
     position: absolute;
-    top: 0;
+    top: -20%;
     left: 0;
     width: 200%;
-    height: 100%;
+    height: 140%;
     background-image:
-        radial-gradient(circle at 10% 40%, rgba(80, 20, 0, 0.6) 8%, transparent 20%),
-        radial-gradient(circle at 30% 70%, rgba(50, 10, 0, 0.7) 12%, transparent 25%),
-        radial-gradient(circle at 60% 30%, rgba(90, 25, 0, 0.5) 10%, transparent 20%),
-        radial-gradient(circle at 85% 65%, rgba(60, 15, 0, 0.8) 15%, transparent 30%);
+        radial-gradient(ellipse at 10% 40%, rgba(255, 255, 200, 0.9) 10%, transparent 40%),
+        radial-gradient(ellipse at 30% 60%, rgba(255, 200, 50, 0.8) 15%, transparent 50%),
+        radial-gradient(ellipse at 60% 30%, rgba(255, 100, 0, 0.8) 20%, transparent 55%),
+        radial-gradient(ellipse at 85% 70%, rgba(255, 50, 0, 0.7) 15%, transparent 60%);
     background-size: 50% 100%;
-    animation: mars-spin 12s linear infinite;
-    mix-blend-mode: color-burn;
+    animation: burning-spin 4s linear infinite;
+    mix-blend-mode: color-dodge;
+    filter: blur(4px) contrast(1.5);
 }
 
 .ring {
@@ -451,7 +452,7 @@ h3 {
     }
 }
 
-@keyframes mars-spin {
+@keyframes burning-spin {
     0% {
         transform: translateX(0);
     }
